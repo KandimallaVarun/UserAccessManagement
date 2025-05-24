@@ -23,7 +23,6 @@
                     <input type="password" name="password" class="form-control" required>
                 </div>
 
-                <!-- Hidden role field, default Employee -->
                 <input type="hidden" name="role" value="Employee">
 
                 <button type="submit" class="btn btn-success w-100">Sign Up</button>

@@ -28,12 +28,10 @@ public class LoginServlet extends HttpServlet {
             if (rs.next()) {
                 String role = rs.getString("role");
 
-                // Create a session and set attributes
                 HttpSession session = req.getSession();
                 session.setAttribute("username", username);
                 session.setAttribute("role", role);
 
-                // Redirect based on role
                 switch (role) {
                     case "Employee":
                         resp.sendRedirect("requestAccess.jsp");
@@ -48,7 +46,6 @@ public class LoginServlet extends HttpServlet {
                         resp.sendRedirect("login.jsp?error=Unknown role.");
                 }
             } else {
-                // Invalid credentials
                 resp.sendRedirect("login.jsp?error=Invalid username or password.");
             }
         } catch (SQLException e) {

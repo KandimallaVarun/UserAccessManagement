@@ -16,7 +16,7 @@ public class SignUpServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        String role = "Employee"; // default, or you could fetch from hidden field if needed
+        String role = "Employee"; // default
 
         try (Connection con = DBConnection.getConnection()) {
             String sql = "INSERT INTO users(username, password, role) VALUES (?, ?, ?)";
@@ -27,10 +27,8 @@ public class SignUpServlet extends HttpServlet {
 
             int result = ps.executeUpdate();
             if (result > 0) {
-                // On success, redirect to login
                 resp.sendRedirect("login.jsp?message=Registered successfully, please login.");
             } else {
-                // On fail, reload signup page
                 resp.sendRedirect("signup.jsp?error=Registration failed.");
             }
         } catch (SQLException e) {
